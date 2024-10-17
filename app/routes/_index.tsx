@@ -5,12 +5,13 @@ import {
   TextInput,
   Button,
   Flex,
-  Box,
-  List,
+  Paper,
+  Divider,
 } from "@mantine/core";
 import type { MetaFunction } from "@remix-run/node";
 import { Form } from "@remix-run/react";
-import { useState } from "react";
+
+import { Fragment, useState } from "react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -76,7 +77,7 @@ export default function Index() {
 
   return (
     <Container size="md" mt="md">
-      <Flex direction="column" gap="md">
+      <Paper withBorder p="md" pb="lg" shadow="sm">
         <Title>ABT Story Structure</Title>
         <Text>
           Create a chain of stories using the And, But, Therefore framework{" "}
@@ -98,20 +99,23 @@ export default function Index() {
             </Button>
           </Flex>
         </Form>
-        {stories.length > 0 && (
-          <Box mt="md">
-            <Title order={3}>Your Story Chain:</Title>
-            <List>
-              {stories.map((story, index) => (
-                <List.Item key={index}>
-                  {story.statusQuo} AND {story.and} BUT {story.but} THEREFORE{" "}
-                  {story.therefore}
-                </List.Item>
-              ))}
-            </List>
-          </Box>
-        )}
-      </Flex>
+      </Paper>
+      {stories.length > 0 && (
+        <>
+          <Title order={4} mt="lg" mb="sm">
+            Your Story Chain
+          </Title>
+          <Paper withBorder p="md" pb="lg" mb="sm" shadow="sm">
+            {stories.map((story, index) => (
+              <Fragment key={index}>
+                {story.statusQuo} AND {story.and} BUT {story.but} THEREFORE{" "}
+                {story.therefore}
+                {index + 1 === stories.length ? null : <Divider my="md" />}
+              </Fragment>
+            ))}
+          </Paper>
+        </>
+      )}
     </Container>
   );
 }
