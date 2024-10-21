@@ -144,8 +144,9 @@ export default function Index() {
                     {story.therefore}.
                   </Box>
                   <Button
+                    style={{ minWidth: 60 }}
+                    size="sm"
                     variant="subtle"
-                    size="compact-md"
                     color="red"
                     onClick={() => {
                       const deleteStory = stories.filter(
@@ -155,7 +156,7 @@ export default function Index() {
                       setStories(deleteStory);
                     }}
                   >
-                    <Trash2 style={{ height: 20 }} />
+                    <Trash2 style={{ height: 18, width: 18 }} />
                   </Button>
                 </Flex>
                 {index + 1 === stories.length ? null : <Divider my="md" />}
