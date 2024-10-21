@@ -1,6 +1,10 @@
 import "@mantine/core/styles.css";
 
-import { MantineProvider, ColorSchemeScript } from "@mantine/core";
+import {
+  MantineProvider,
+  ColorSchemeScript,
+  LoadingOverlay,
+} from "@mantine/core";
 import {
   Links,
   Meta,
@@ -8,6 +12,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { useDisclosure } from "@mantine/hooks";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -33,5 +38,14 @@ export default function App() {
 }
 
 export function HydrateFallback() {
-  return <p>Loading...</p>;
+  const [visible] = useDisclosure(true);
+
+  return (
+    <LoadingOverlay
+      visible={visible}
+      zIndex={1000}
+      overlayProps={{ radius: "sm", blur: 2 }}
+      loaderProps={{ color: "blue", type: "oval" }}
+    />
+  );
 }
