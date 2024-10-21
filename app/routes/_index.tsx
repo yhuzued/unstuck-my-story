@@ -7,10 +7,13 @@ import {
   Flex,
   Paper,
   Divider,
+  CopyButton,
+  Box,
 } from "@mantine/core";
 import type { MetaFunction } from "@remix-run/node";
 import { Form } from "@remix-run/react";
-
+import { Check, Copy, Trash2 } from "lucide-react";
+import { v4 as uuidv4 } from "uuid";
 import { Fragment, useState } from "react";
 
 export const meta: MetaFunction = () => {
@@ -26,6 +29,7 @@ export const meta: MetaFunction = () => {
 type StoryPart = "statusQuo" | "and" | "but" | "therefore";
 
 interface Story {
+  id: string;
   statusQuo: string;
   and: string;
   but: string;
@@ -52,6 +56,15 @@ export default function Index() {
     therefore: "Provide the resolution or outcome",
   };
 
+  const copyStoriesToClipboard = () => {
+    const data = stories.map(
+      (data) =>
+        `${data.statusQuo} AND ${data.and} BUT ${data.but} THEREFORE ${data.therefore}`
+    );
+
+    return data.flat().join().replaceAll(",", "\n");
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setCurrentStory((prev) => ({ ...prev, [currentPart]: inputValue }));
@@ -60,7 +73,7 @@ export default function Index() {
     if (currentPart === "therefore") {
       setStories((prev) => [
         ...prev,
-        { ...currentStory, therefore: inputValue } as Story,
+        { ...currentStory, therefore: inputValue, id: uuidv4() } as Story,
       ]);
       setCurrentStory({});
       setCurrentPart("statusQuo");
@@ -102,14 +115,49 @@ export default function Index() {
       </Paper>
       {stories.length > 0 && (
         <>
-          <Title order={4} mt="lg" mb="sm">
-            Your Story Chain
-          </Title>
-          <Paper withBorder p="md" pb="lg" mb="sm" shadow="sm">
+          <Flex justify="space-between" mt="lg" mb="sm" align="center">
+            <Title order={4}>Your Story Chain</Title>
+            <CopyButton value={copyStoriesToClipboard()}>
+              {({ copied, copy }) => (
+                <Button
+                  size="compact-md"
+                  variant="outline"
+                  color={copied ? "teal" : "blue"}
+                  onClick={copy}
+                >
+                  {copied ? (
+                    <Check style={{ height: 16 }} />
+                  ) : (
+                    <Copy style={{ height: 16 }} />
+                  )}
+                </Button>
+              )}
+            </CopyButton>
+          </Flex>
+          <Paper withBorder p="xl" pb="lg" mb="sm" shadow="sm">
             {stories.map((story, index) => (
               <Fragment key={index}>
-                {story.statusQuo} AND {story.and} BUT {story.but} THEREFORE{" "}
-                {story.therefore}
+                <Flex justify="space-between">
+                  <Box>
+                    {story.statusQuo} <strong>AND</strong> {story.and}{" "}
+                    <strong>BUT</strong> {story.but} <strong>THEREFORE</strong>{" "}
+                    {story.therefore}.
+                  </Box>
+                  <Button
+                    variant="subtle"
+                    size="compact-md"
+                    color="red"
+                    onClick={() => {
+                      const deleteStory = stories.filter(
+                        (data) => data.id !== story.id
+                      );
+
+                      setStories(deleteStory);
+                    }}
+                  >
+                    <Trash2 style={{ height: 20 }} />
+                  </Button>
+                </Flex>
                 {index + 1 === stories.length ? null : <Divider my="md" />}
               </Fragment>
             ))}
