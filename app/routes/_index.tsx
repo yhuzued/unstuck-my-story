@@ -12,7 +12,7 @@ import {
 } from "@mantine/core";
 import type { MetaFunction } from "@remix-run/node";
 import { Form } from "@remix-run/react";
-import { Check, Copy, Trash2 } from "lucide-react";
+import { Check, Copy, X } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
 import { Fragment, useState } from "react";
 
@@ -134,20 +134,22 @@ export default function Index() {
               )}
             </CopyButton>
           </Flex>
-          <Paper withBorder p="xl" pb="lg" mb="sm" shadow="sm">
+          <Paper withBorder p="lg" mb="sm" shadow="sm">
             {stories.map((story, index) => (
               <Fragment key={index}>
-                <Flex justify="space-between">
+                <Flex justify="space-between" gap="md" align="center">
                   <Box>
                     {story.statusQuo} <strong>AND</strong> {story.and}{" "}
                     <strong>BUT</strong> {story.but} <strong>THEREFORE</strong>{" "}
                     {story.therefore}.
                   </Box>
+                  <Divider my="md" orientation="vertical" />
                   <Button
-                    style={{ minWidth: 60 }}
-                    size="sm"
-                    variant="subtle"
+                    style={{ minWidth: 30, padding: "0" }}
+                    size="xs"
+                    variant="outline"
                     color="red"
+                    radius="xl"
                     onClick={() => {
                       const deleteStory = stories.filter(
                         (data) => data.id !== story.id
@@ -156,7 +158,7 @@ export default function Index() {
                       setStories(deleteStory);
                     }}
                   >
-                    <Trash2 style={{ height: 18, width: 18 }} />
+                    <X style={{ height: 14 }} />
                   </Button>
                 </Flex>
                 {index + 1 === stories.length ? null : <Divider my="md" />}
