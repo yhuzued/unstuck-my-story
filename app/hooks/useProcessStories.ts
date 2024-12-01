@@ -19,12 +19,15 @@ export function useProcessStories(data: Data) {
   const [stories, setStories] = useState<Story[]>([]);
 
   const copyStoriesToClipboard = () => {
-    const data = stories.map(
-      (data) =>
-        `${data.statusQuo} AND ${data.and} BUT ${data.but} THEREFORE ${data.therefore}`
-    );
+    let teksData = "";
 
-    return data.flat().join().replaceAll(",", "\n");
+    stories.forEach((data) => {
+      teksData =
+        teksData +
+        `${data.statusQuo} AND ${data.and} BUT ${data.but} THEREFORE ${data.therefore}\n`;
+    });
+
+    return teksData;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
