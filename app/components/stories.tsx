@@ -23,10 +23,8 @@ export function Stories({
             <Divider my="md" orientation="vertical" />
             <Button
               style={{ minWidth: 30, padding: "0" }}
-              size="xs"
-              variant="outline"
+              size="compact-lg"
               color="red"
-              radius="xl"
               onClick={() => {
                 const deleteStory = stories.filter(
                   (data) => data.id !== story.id

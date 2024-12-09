@@ -23,7 +23,7 @@ export default function Index() {
     useProcessStories(textField);
 
   return (
-    <Container size="md" mt="md">
+    <Container size="sm" mt="md">
       <Paper withBorder p="md" pb="lg" shadow="sm">
         <Title>ABT Story Structure</Title>
         <Text>

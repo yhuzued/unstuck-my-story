@@ -12,12 +12,7 @@ export function CustomCopyButton({
   return (
     <CopyButton value={copyStoriesToClipboard()}>
       {({ copied, copy }) => (
-        <Button
-          size="compact-md"
-          variant="outline"
-          color={copied ? "teal" : "blue"}
-          onClick={copy}
-        >
+        <Button size="compact-md" variant="gradient" onClick={copy}>
           {copied ? (
             <Check style={{ height: 16 }} />
           ) : (

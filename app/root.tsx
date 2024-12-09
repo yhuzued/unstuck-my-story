@@ -24,7 +24,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
         <ColorSchemeScript />
       </head>
-      <body style={{ backgroundColor: "whitesmoke" }}>
+      <body style={{ backgroundColor: "#bae6fd" }}>
         <MantineProvider>{children}</MantineProvider>
         <ScrollRestoration />
         <Scripts />
