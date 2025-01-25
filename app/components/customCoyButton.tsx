@@ -1,5 +1,4 @@
 import { Button, CopyButton } from "@mantine/core";
-import { Check, Copy } from "lucide-react";
 import { useProcessStories } from "~/hooks/useProcessStories";
 
 export function CustomCopyButton({
@@ -12,12 +11,12 @@ export function CustomCopyButton({
   return (
     <CopyButton value={copyStoriesToClipboard()}>
       {({ copied, copy }) => (
-        <Button size="compact-md" variant="gradient" onClick={copy}>
-          {copied ? (
-            <Check style={{ height: 16 }} />
-          ) : (
-            <Copy style={{ height: 16 }} />
-          )}
+        <Button
+          color={copied ? "teal" : "blue"}
+          onClick={copy}
+          size="compact-sm"
+        >
+          {copied ? "Copied text" : "Copy text"}
         </Button>
       )}
     </CopyButton>

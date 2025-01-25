@@ -25,6 +25,7 @@ export function Stories({
               style={{ minWidth: 30, padding: "0" }}
               size="compact-lg"
               color="red"
+              variant="light"
               onClick={() => {
                 const deleteStory = stories.filter(
                   (data) => data.id !== story.id
