@@ -3,11 +3,11 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  base: "/unstuck-my-story/",
+  base: "/unstuck-my-story",
   plugins: [
     remix({
       ssr: false,
-      basename: "/unstuck-my-story/",
+      basename: "/unstuck-my-story",
       future: {
         v3_fetcherPersist: true,
         v3_relativeSplatPath: true,
