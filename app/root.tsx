@@ -4,6 +4,7 @@ import {
   MantineProvider,
   ColorSchemeScript,
   LoadingOverlay,
+  Container,
 } from "@mantine/core";
 import {
   Links,
@@ -13,6 +14,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import { useDisclosure } from "@mantine/hooks";
+import Tab from "./components/tab";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -25,7 +27,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <ColorSchemeScript />
       </head>
       <body style={{ backgroundColor: "#bae6fd" }}>
-        <MantineProvider>{children}</MantineProvider>
+        <MantineProvider>
+          <Container size="sm" mt="md">
+            <Tab />
+            {children}
+          </Container>
+        </MantineProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
