@@ -1,6 +1,5 @@
 import {
   Button,
-  CopyButton,
   Flex,
   Paper,
   ScrollArea,
@@ -8,8 +7,20 @@ import {
   TextInput,
   Title,
 } from "@mantine/core";
+import { MetaFunction } from "@remix-run/react";
 import { MessageSquare, X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import { CustomCopyButton } from "~/components/customCoyButton";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Writing Mode" },
+    {
+      name: "description",
+      content: "Writing mode",
+    },
+  ];
+};
 
 export default function WritingMode() {
   const [text, setText] = useState<string[]>([]);
@@ -42,17 +53,7 @@ export default function WritingMode() {
     <>
       <Flex my="md" justify="space-between" align="center">
         <Title order={4}>Write Your Story</Title>
-        <CopyButton value={copyText()}>
-          {({ copied, copy }) => (
-            <Button
-              color={copied ? "teal" : "blue"}
-              onClick={copy}
-              size="compact-sm"
-            >
-              {copied ? "Copied text" : "Copy text"}
-            </Button>
-          )}
-        </CopyButton>
+        <CustomCopyButton copyStoriesToClipboard={() => copyText()} />
       </Flex>
       <ScrollArea.Autosize mah={340} viewportRef={viewport} type="always">
         {text.map((t, i) => (
