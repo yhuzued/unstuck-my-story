@@ -1,16 +1,9 @@
-import {
-  Button,
-  Flex,
-  Paper,
-  ScrollArea,
-  Text,
-  TextInput,
-  Title,
-} from "@mantine/core";
+import { Flex, Paper, Title } from "@mantine/core";
 import { MetaFunction } from "@remix-run/react";
-import { MessageSquare, X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { CustomCopyButton } from "~/components/customCoyButton";
+import { WritingModeScrollArea } from "~/components/writingModeScrollArea";
+import { WritingModeTextInput } from "~/components/writingModeTextInput";
 
 export const meta: MetaFunction = () => {
   return [
@@ -22,8 +15,17 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+export type Writing = {
+  p: boolean;
+  e: boolean;
+  r: boolean;
+  a: boolean;
+  d: boolean;
+  text: string;
+}[];
+
 export default function WritingMode() {
-  const [text, setText] = useState<string[]>([]);
+  const [text, setText] = useState<Writing>([]);
 
   const viewport = useRef<HTMLDivElement>(null);
 
@@ -36,7 +38,7 @@ export default function WritingMode() {
   const copyText = () => {
     let copy = "";
 
-    text.forEach((t) => (copy = copy + t + "\n"));
+    text.forEach((t) => (copy = copy + t.text + "\n"));
 
     return copy;
   };
@@ -55,26 +57,11 @@ export default function WritingMode() {
         <Title order={4}>Write Your Story</Title>
         <CustomCopyButton copyStoriesToClipboard={() => copyText()} />
       </Flex>
-      <ScrollArea.Autosize mah={340} viewportRef={viewport} type="always">
-        {text.map((t, i) => (
-          <Paper key={t + i} px="lg" py="sm" my={2}>
-            <Flex justify="space-between" gap="sm">
-              <Text size="md" fw={350}>
-                {t}
-              </Text>
-              <Button
-                color="red"
-                variant="light"
-                radius="md"
-                style={{ minWidth: 30, padding: "0" }}
-                onClick={() => deleteItem(i)}
-              >
-                <X size={12} />
-              </Button>
-            </Flex>
-          </Paper>
-        ))}
-      </ScrollArea.Autosize>
+      <WritingModeScrollArea
+        deleteItem={deleteItem}
+        text={text}
+        viewport={viewport}
+      />
       <Paper
         withBorder
         p="md"
@@ -83,30 +70,10 @@ export default function WritingMode() {
         shadow="sm"
         style={{ position: "sticky", bottom: 0 }}
       >
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const text = (e.target as HTMLFormElement).text.value;
-            setText((prev) => [...prev, text]);
-            e.currentTarget.reset();
-            scrollToBottom();
-          }}
-        >
-          <TextInput
-            minLength={3}
-            required
-            size="md"
-            name="text"
-            rightSection={<MessageSquare size={14} />}
-            placeholder="What happens next?"
-            label="Writing Form"
-            height={600}
-            description="Write your text here"
-          />
-          <Button type="submit" style={{ display: "none" }}>
-            Enter
-          </Button>
-        </form>
+        <WritingModeTextInput
+          scrollToBottom={scrollToBottom}
+          setText={setText}
+        />
       </Paper>
     </>
   );
