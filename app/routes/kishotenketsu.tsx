@@ -19,6 +19,7 @@ export default function Kishotenketsu() {
   const [listDev, setListDev] = useState<string[]>([]);
   const [listTwist, setListTwist] = useState<string[]>([]);
   const [listConclusion, setListConclusion] = useState<string[]>([]);
+  const [openAccordions, setOpenAccordions] = useState<string[]>(["1"]);
 
   function normalizeData(data: string[]): string {
     let result = "\n";
@@ -52,8 +53,9 @@ export default function Kishotenketsu() {
         <CustomCopyButton copyStoriesToClipboard={() => copyData()} />
       </Flex>
       <Paper>
-        <Accordion defaultValue={"1"}>
+        <Accordion multiple value={openAccordions} onChange={setOpenAccordions}>
           <KishotenketsuItem
+            direction="row"
             accordionValue="1"
             title="Introduction (Ki)"
             description="Introduce the setting, characters, and basic premise."
@@ -61,6 +63,7 @@ export default function Kishotenketsu() {
             setListItems={setListIntro}
           />
           <KishotenketsuItem
+            direction="column"
             accordionValue="2"
             title="Development (Shō)"
             description="Develop the main story and character motivations."
@@ -68,6 +71,7 @@ export default function Kishotenketsu() {
             setListItems={setListDev}
           />
           <KishotenketsuItem
+            direction="column"
             accordionValue="3"
             title="Twist (Ten)"
             description="Introduces a surprising twist."
@@ -75,6 +79,7 @@ export default function Kishotenketsu() {
             setListItems={setListTwist}
           />
           <KishotenketsuItem
+            direction="column"
             accordionValue="4"
             title="Conclusion (Ketsu)"
             description="Wraps up the story."
