@@ -1,6 +1,6 @@
 import { Tabs } from "@mantine/core";
 import { useLocation, useNavigate } from "@remix-run/react";
-import { NotebookPen, TableOfContents } from "lucide-react";
+import { NotebookPen, Sprout, TableOfContents } from "lucide-react";
 
 export default function Tab() {
   const navigate = useNavigate();
@@ -29,6 +29,13 @@ export default function Tab() {
           leftSection={<NotebookPen size={12} />}
         >
           Writing Mode
+        </Tabs.Tab>
+        <Tabs.Tab
+          onClick={() => navigate("kishotenketsu")}
+          value="/kishotenketsu"
+          leftSection={<Sprout size={12} />}
+        >
+          Kishōtenketsu
         </Tabs.Tab>
       </Tabs.List>
     </Tabs>
