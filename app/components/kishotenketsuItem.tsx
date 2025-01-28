@@ -7,12 +7,14 @@ export function KishotenketsuItem({
   listItems,
   setListItems,
   accordionValue,
+  direction,
 }: {
   title: string;
   description: string;
   listItems: string[];
   setListItems: React.Dispatch<React.SetStateAction<string[]>>;
   accordionValue: string;
+  direction: "row" | "column";
 }) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,7 +51,7 @@ export function KishotenketsuItem({
 
         {listItems.length > 0 && (
           <Paper withBorder my="xs">
-            <Flex p="md" direction="column" wrap="wrap" mah={200}>
+            <Flex p="md" direction={direction} gap="xs" wrap="wrap">
               {listItems.map((d, i) => (
                 <Flex gap="sm" key={i}>
                   <Text size="sm" fw={400}>
