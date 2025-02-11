@@ -1,5 +1,4 @@
-import { Button, TextInput } from "@mantine/core";
-import { MessageSquare } from "lucide-react";
+import { Button, Textarea } from "@mantine/core";
 import { Checkboxes } from "./checkboxes";
 import { Writing } from "~/routes/writing-mode";
 
@@ -10,9 +9,14 @@ export function WritingModeTextInput({
   setText: React.Dispatch<React.SetStateAction<Writing>>;
   scrollToBottom: () => void;
 }) {
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key >= "1" && event.key <= "5") {
       event.preventDefault();
+    }
+
+    if (event.key === "Enter") {
+      event.preventDefault();
+      event.currentTarget.form?.requestSubmit();
     }
   };
 
@@ -37,17 +41,17 @@ export function WritingModeTextInput({
         scrollToBottom();
       }}
     >
-      <TextInput
+      <Textarea
         minLength={3}
-        pattern="[^1-5]*"
         onKeyDown={handleKeyDown}
         required
         size="md"
         name="text"
-        rightSection={<MessageSquare size={14} />}
         placeholder="What happens next?"
         label="Writing Form"
-        height={600}
+        minRows={1}
+        maxRows={7}
+        autosize
         description="Write your text here"
       />
       <Checkboxes />
