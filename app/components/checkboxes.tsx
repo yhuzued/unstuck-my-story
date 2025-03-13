@@ -33,7 +33,11 @@ export function Checkboxes() {
 
   return (
     <Flex my="md" gap="sm" wrap="wrap">
-      <Checkbox name="p" label="Physical Movement (1)" size="xs" />
+      <Checkbox
+        name="p"
+        label="Physical movement with stimulus and response  (1)"
+        size="xs"
+      />
       <Checkbox name="e" label="Emotion (2)" size="xs" />
       <Checkbox name="r" label="Reason (3)" size="xs" />
       <Checkbox name="a" label="Anticipation (4)" size="xs" />
