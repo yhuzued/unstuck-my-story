@@ -1,6 +1,7 @@
 import { Button, Textarea } from "@mantine/core";
 import { Checkboxes } from "./checkboxes";
 import { Writing } from "~/routes/writing-mode";
+import { useState } from "react";
 
 export function WritingModeTextInput({
   setText,
@@ -9,6 +10,7 @@ export function WritingModeTextInput({
   setText: React.Dispatch<React.SetStateAction<Writing>>;
   scrollToBottom: () => void;
 }) {
+  const [atleastOneChecked, setAtleatsOneChekced] = useState(false);
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key >= "1" && event.key <= "5") {
       event.preventDefault();
@@ -32,11 +34,18 @@ export function WritingModeTextInput({
         const a = formData.get("a") === "on" ? true : false;
         const d = formData.get("d") === "on" ? true : false;
 
+        // If even one is false, the text cannot be posted
+        if (!(p || e || r || a || d)) {
+          setAtleatsOneChekced(true);
+          return;
+        }
+
         if (!text) {
           return;
         }
 
         setText((prev) => [...prev, { p, e, r, a, d, text: text.toString() }]);
+        setAtleatsOneChekced(false);
         event.currentTarget.reset();
         scrollToBottom();
       }}
@@ -53,6 +62,11 @@ export function WritingModeTextInput({
         maxRows={7}
         autosize
         description="Write your text here"
+        error={
+          atleastOneChecked
+            ? "At least one of the checkboxes must be selected"
+            : null
+        }
       />
       <Checkboxes />
       <Button type="submit" style={{ display: "none" }}>
