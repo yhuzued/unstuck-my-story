@@ -1,6 +1,6 @@
 import { Tabs } from "@mantine/core";
 import { useLocation, useNavigate } from "@remix-run/react";
-import { NotebookPen, Sprout, TableOfContents } from "lucide-react";
+import { Brush, NotebookPen, Sprout, TableOfContents } from "lucide-react";
 
 export default function Tab() {
   const navigate = useNavigate();
@@ -36,6 +36,13 @@ export default function Tab() {
           leftSection={<Sprout size={12} />}
         >
           Kishōtenketsu
+        </Tabs.Tab>
+        <Tabs.Tab
+          onClick={() => navigate("xianxia-face-slap")}
+          value="/xianxia-face-slap"
+          leftSection={<Brush size={12} />}
+        >
+          Xianxia Face Slap Formula
         </Tabs.Tab>
       </Tabs.List>
     </Tabs>
