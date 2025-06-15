@@ -12,7 +12,7 @@ export function WritingModeTextInput({
 }) {
   const [atleastOneChecked, setAtleatsOneChekced] = useState(false);
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key >= "1" && event.key <= "5") {
+    if (event.key >= "1" && event.key <= "3") {
       event.preventDefault();
     }
 
@@ -31,11 +31,11 @@ export function WritingModeTextInput({
         const p = formData.get("p") === "on" ? true : false;
         const e = formData.get("e") === "on" ? true : false;
         const r = formData.get("r") === "on" ? true : false;
-        const a = formData.get("a") === "on" ? true : false;
-        const d = formData.get("d") === "on" ? true : false;
+        // const a = formData.get("a") === "on" ? true : false;
+        // const d = formData.get("d") === "on" ? true : false;
 
         // If even one is false, the text cannot be posted
-        if (!(p || e || r || a || d)) {
+        if (!(p || e || r)) {
           setAtleatsOneChekced(true);
           return;
         }
@@ -44,7 +44,7 @@ export function WritingModeTextInput({
           return;
         }
 
-        setText((prev) => [...prev, { p, e, r, a, d, text: text.toString() }]);
+        setText((prev) => [...prev, { p, e, r, text: text.toString() }]);
         setAtleatsOneChekced(false);
         event.currentTarget.reset();
         scrollToBottom();

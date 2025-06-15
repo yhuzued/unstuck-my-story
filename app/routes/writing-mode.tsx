@@ -19,8 +19,6 @@ export type Writing = {
   p: boolean;
   e: boolean;
   r: boolean;
-  a: boolean;
-  d: boolean;
   text: string;
 }[];
 
