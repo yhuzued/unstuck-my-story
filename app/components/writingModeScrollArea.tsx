@@ -45,8 +45,8 @@ export function WritingModeScrollArea({ viewport, text, deleteItem }: Props) {
             <PeradType type={t.p} bg="green" text="Physical Movement" />
             <PeradType type={t.e} bg="orange" text="Emotion" />
             <PeradType type={t.r} bg="blue" text="Reason" />
-            <PeradType type={t.a} bg="red" text="Anticipation" />
-            <PeradType type={t.d} bg="lime" text="Decision" />
+            {/* <PeradType type={t.a} bg="red" text="Anticipation" />
+            <PeradType type={t.d} bg="lime" text="Decision" /> */}
           </Flex>
           <Flex justify="space-between" gap="sm">
             <Text size="md" fw={350}>

@@ -24,6 +24,7 @@ export function Checkboxes() {
     };
 
     window.addEventListener("keydown", handleKeyPress);
+
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
@@ -34,10 +35,11 @@ export function Checkboxes() {
       <Checkbox
         name="p"
         label="Physical movement with stimulus and response  (1)"
-        size="xs"
+        size="md"
+        color="green"
       />
-      <Checkbox name="e" label="Emotion (2)" size="xs" />
-      <Checkbox name="r" label="Reason (3)" size="xs" />
+      <Checkbox name="e" label="Emotion (2)" size="md" color="orange" />
+      <Checkbox name="r" label="Reason (3)" size="md" color="blue" />
       {/*<Checkbox name="a" label="Anticipation (4)" size="xs" />
       <Checkbox name="d" label="Decision (5)" size="xs" /> */}
     </Flex>
