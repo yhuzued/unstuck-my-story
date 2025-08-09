@@ -18,14 +18,14 @@ export function useTextField() {
 
   const partLabels: Record<StoryPart, string> = {
     statusQuo: "Status Quo",
-    and: "And",
+    and: "Want",
     but: "But",
     therefore: "Therefore",
   };
 
   const partDescriptions: Record<StoryPart, string> = {
     statusQuo: "Set up the initial situation or context",
-    and: "Provide additional context or background information",
+    and: "What the PoV character want?",
     but: "Introduce the conflict or challenge that creates tension",
     therefore: "Provide the resolution or outcome",
   };
