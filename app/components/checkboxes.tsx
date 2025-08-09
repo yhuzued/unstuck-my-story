@@ -10,6 +10,7 @@ export function Checkboxes() {
         1: "p",
         2: "e",
         3: "r",
+        4: "a",
       };
 
       if (checkboxMapping[key]) {
@@ -40,8 +41,8 @@ export function Checkboxes() {
       />
       <Checkbox name="e" label="Emotion (2)" size="md" color="orange" />
       <Checkbox name="r" label="Reason (3)" size="md" color="blue" />
-      {/*<Checkbox name="a" label="Anticipation (4)" size="xs" />
-      <Checkbox name="d" label="Decision (5)" size="xs" /> */}
+      <Checkbox name="a" label="Anticipation (4)" size="md" color="red" />
+      {/* <Checkbox name="d" label="Decision (5)" size="xs" />  */}
     </Flex>
   );
 }
