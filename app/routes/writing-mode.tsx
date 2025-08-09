@@ -52,16 +52,12 @@ export default function WritingMode() {
 
   return (
     <>
-      <Flex my="md" justify="space-between" align="center">
-        <Title order={4}>Write Your Story</Title>
-        <CustomCopyButton copyStoriesToClipboard={() => copyText()} />
-      </Flex>
       <Paper
         p="md"
         mt={12}
         pb="lg"
         shadow="sm"
-        style={{ textAlign: "justify", fontSize: 15 }}
+        style={{ textAlign: "justify", fontSize: 12 }}
       >
         <b>Remember this when writing your story!</b>
         <br />
@@ -73,7 +69,15 @@ export default function WritingMode() {
         <b>tension is the space between what is and what could be</b>, and
         it&apos;s what compels readers to turn the page and find out what
         happens next.
+        <br />
+        <br />
+        <b style={{ color: "red" }}>Before you start writing, plot first!</b>
       </Paper>
+      <Flex my="md" justify="space-between" align="center">
+        <Title order={4}>Write Your Story</Title>
+        <CustomCopyButton copyStoriesToClipboard={() => copyText()} />
+      </Flex>
+
       <WritingModeScrollArea
         deleteItem={deleteItem}
         text={text}
