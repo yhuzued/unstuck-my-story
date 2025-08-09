@@ -55,6 +55,24 @@ export default function WritingMode() {
         <Title order={4}>Write Your Story</Title>
         <CustomCopyButton copyStoriesToClipboard={() => copyText()} />
       </Flex>
+      <Paper
+        p="md"
+        mt={12}
+        pb="lg"
+        shadow="sm"
+        style={{ textAlign: "justify", fontSize: 15 }}
+      >
+        <b>Remember this when writing your story!</b>
+        <br />
+        In fiction, tension is the driving force that keeps readers engaged by
+        creating a sense of <b>anticipation</b>, <b>uncertainty</b>, and{" "}
+        <b>conflict</b>. It&apos;s the feeling of something hanging in the
+        balance, whether it&apos;s the threat of a bad outcome or the excitement
+        of a positive one. Essentially,{" "}
+        <b>tension is the space between what is and what could be</b>, and
+        it&apos;s what compels readers to turn the page and find out what
+        happens next.
+      </Paper>
       <WritingModeScrollArea
         deleteItem={deleteItem}
         text={text}
