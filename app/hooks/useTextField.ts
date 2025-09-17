@@ -25,7 +25,7 @@ export function useTextField() {
 
   const partDescriptions: Record<StoryPart, string> = {
     statusQuo: "Set up the initial situation or context",
-    and: "What the PoV character want?",
+    and: "What does the PoV character want? Include the reward and punishment of this desire so the character can anticipate the result and worry about it. This creates tension.",
     but: "Introduce the conflict or challenge that creates tension",
     therefore: "Provide the resolution or outcome",
   };
