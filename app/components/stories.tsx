@@ -16,7 +16,8 @@ export function Stories({
         <Fragment key={index}>
           <Flex justify="space-between" gap="md" align="center">
             <Box>
-              {story.statusQuo} <strong>AND</strong> {story.and}{" "}
+              {story.statusQuo} <strong>WANT</strong> {story.want}{" "}
+              <strong>SO</strong> {story.so}{" "}
               <strong>BUT</strong> {story.but} <strong>THEREFORE</strong>{" "}
               {story.therefore}.
             </Box>

@@ -2,12 +2,13 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useTextField } from "./useTextField";
 
-export type StoryPart = "statusQuo" | "and" | "but" | "therefore";
+export type StoryPart = "statusQuo" | "want" | "so"| "but" | "therefore";
 
 export interface Story {
   id: string;
   statusQuo: string;
-  and: string;
+  want: string;
+  so: string
   but: string;
   therefore: string;
 }
@@ -24,7 +25,7 @@ export function useProcessStories(data: Data) {
     stories.forEach((data) => {
       teksData =
         teksData +
-        `${data.statusQuo} AND ${data.and} BUT ${data.but} THEREFORE ${data.therefore}\n`;
+        `${data.statusQuo} AND ${data.want} SO ${data.so} BUT ${data.but} THEREFORE ${data.therefore}\n`;
     });
 
     return teksData;
@@ -60,13 +61,19 @@ export function useProcessStories(data: Data) {
       setter.setCurrentStory({});
       setter.setCurrentPart("statusQuo");
     } else {
-      setter.setCurrentPart(
-        state.currentPart === "statusQuo"
-          ? "and"
-          : state.currentPart === "and"
-          ? "but"
-          : "therefore"
-      );
+      let nextPart: StoryPart;
+      if (state.currentPart === "statusQuo") {
+        nextPart = "want";
+      } else if (state.currentPart === "want") {
+        nextPart = "so"; // Corrected logic
+      } else if (state.currentPart === "so") {
+        nextPart = "but"; // Corrected logic
+      } else if (state.currentPart === "but") {
+        nextPart = "therefore";
+      } else {
+        nextPart = "therefore";
+      }
+      setter.setCurrentPart(nextPart);
     }
   };
 

@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-export type StoryPart = "statusQuo" | "and" | "but" | "therefore";
+export type StoryPart = "statusQuo" | "so" | "want" | "but" | "therefore";
 
 export interface Story {
   id: string;
   statusQuo: string;
-  and: string;
+  want: string;
+  so: string;
   but: string;
   therefore: string;
 }
@@ -18,14 +19,16 @@ export function useTextField() {
 
   const partLabels: Record<StoryPart, string> = {
     statusQuo: "Status Quo",
-    and: "Want",
+    want: "Want",
+    so: "So",
     but: "But",
     therefore: "Therefore",
   };
 
   const partDescriptions: Record<StoryPart, string> = {
     statusQuo: "Set up the initial situation or context",
-    and: "What does the PoV character want? Include the reward and punishment of this desire so the character can anticipate the result and worry about it. This creates tension.",
+    want: "What does the PoV character want? Include the reward and punishment of this desire so the character can anticipate the result and worry about it. This creates tension.",
+    so: "Explain the action the character takes to get what they want",
     but: "Introduce the conflict or challenge that creates tension",
     therefore: "Provide the resolution or outcome",
   };
