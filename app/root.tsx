@@ -26,7 +26,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
         <ColorSchemeScript />
       </head>
-      <body style={{ backgroundColor: "#bae6fd" }}>
+      <body style={{ backgroundColor: "#C1D5BF" }}>
         <MantineProvider>
           <Container size="sm" mt="md">
             <Tab />
