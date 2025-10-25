@@ -1,5 +1,5 @@
-import { Flex, Paper, Title } from "@mantine/core";
-import { MetaFunction } from "@remix-run/react";
+import { Button, Flex, Paper, Title } from "@mantine/core";
+import { MetaFunction, useNavigate } from "@remix-run/react";
 import { useState, useRef, useEffect } from "react";
 import { CustomCopyButton } from "~/components/customCoyButton";
 import { WritingModeScrollArea } from "~/components/writingModeScrollArea";
@@ -25,7 +25,7 @@ export type Writing = {
 
 export default function WritingMode() {
   const [text, setText] = useState<Writing>([]);
-
+  const navigate = useNavigate()
   const viewport = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () =>
@@ -64,7 +64,10 @@ export default function WritingMode() {
         In fiction, tension is the driving force that engages readers by creating a sense of anticipation, uncertainty, and conflict. Tension is the feeling of something hanging in the balance, whether the threat of a negative outcome or the anticipation of a positive one. Tension is essentially the space between what is and what could be, and it compels readers to turn the page and find out what happens next.
         <br />
         <br />
+        <Flex justify={'space-between'} align="center">
         <b style={{ color: "red" }}>Plot first before you start writing!</b>
+        ️<Button size="compact-xs" variant="outline" color="green" onClick={() => navigate('/ploting-mode')}>Start Plotting</Button>
+        </Flex>
       </Paper>
       <Flex my="md" justify="space-between" align="center">
         <Title order={4}>Write Your Story</Title>
