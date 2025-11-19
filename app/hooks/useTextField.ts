@@ -1,15 +1,7 @@
 import { useState } from "react";
+import {Story, StoryPart} from "./useProcessStories";
 
-export type StoryPart = "statusQuo" | "so" | "want" | "but" | "therefore";
 
-export interface Story {
-  id: string;
-  statusQuo: string;
-  want: string;
-  so: string;
-  but: string;
-  therefore: string;
-}
 
 export function useTextField() {
   const [currentPart, setCurrentPart] = useState<StoryPart>("statusQuo");
@@ -19,18 +11,26 @@ export function useTextField() {
 
   const partLabels: Record<StoryPart, string> = {
     statusQuo: "Status Quo",
-    want: "Want",
-    so: "So",
-    but: "But",
-    therefore: "Therefore",
+    omen: "Omen",
+    choice: "Choice",
+    party: "Party",
+    firstBlood: "First Blood",
+    rebirth: "Rebirth",
+    secondBlood: "Second Blood",
+    finale: "Finale",
+    end: "End",
   };
 
   const partDescriptions: Record<StoryPart, string> = {
-    statusQuo: "Set up the initial situation or context",
-    want: "What does the PoV character want? Include the reward and punishment of this desire so the character can anticipate the result and worry about it. This creates tension.",
-    so: "Explain the action the character takes to get what they want",
-    but: "Introduce the conflict or challenge that creates tension",
-    therefore: "Provide the resolution or outcome",
+    statusQuo: "The normal life of the characters before the story begins.",
+    omen: "Ominous foreshadowing signals the oncoming danger.",
+    choice: "The characters choose not to heed the warning.",
+    party: "The cahracters explore the setting and story scenario, unaware of the peril to come.",
+    firstBlood: "The monster attacks either literally or figuratively.",
+    rebirth: "The players undergo an epiphany that allows them to move from reacting to acting. Reveals the true nature of the story.",
+    secondBlood: "The monster attacks again.",
+    finale: "The final sequence. No new information can be obtained. The players mount a final attack.",
+    end: "Story over.",
   };
 
   const state = { currentPart, inputValue, currentStory, inputError };

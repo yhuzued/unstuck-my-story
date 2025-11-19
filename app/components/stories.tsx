@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Flex, Paper } from "@mantine/core";
+import { Box, Button, Divider, Flex, List, Paper } from "@mantine/core";
 import { X } from "lucide-react";
 import { Fragment } from "react/jsx-runtime";
 import { useProcessStories } from "~/hooks/useProcessStories";
@@ -15,12 +15,32 @@ export function Stories({
       {stories.map((story, index) => (
         <Fragment key={index}>
           <Flex justify="space-between" gap="md" align="center">
-            <Box>
-              {story.statusQuo} <strong>WANT</strong> {story.want}{" "}
-              <strong>SO</strong> {story.so}{" "}
-              <strong>BUT</strong> {story.but} <strong>THEREFORE</strong>{" "}
-              {story.therefore}.
-            </Box>
+            <List>
+              <List.Item style={{ flex: 1 }}>
+                <strong>Status Quo</strong>: {story.statusQuo}
+              </List.Item>
+              <List.Item style={{ flex: 1 }}>
+                <strong>Omen</strong>: {story.omen}
+              </List.Item>
+              <List.Item style={{ flex: 1 }}>
+                <strong>Choice</strong>: {story.choice}
+              </List.Item>
+              <List.Item style={{ flex: 1 }}>
+                <strong>First Blood:</strong> {story.firstBlood}
+              </List.Item>
+              <List.Item style={{ flex: 1 }}>
+                <strong>Rebirth</strong>: {story.rebirth}
+              </List.Item>
+              <List.Item style={{ flex: 1 }}>
+                <strong>Second Blood</strong>: {story.secondBlood}
+              </List.Item>
+              <List.Item style={{ flex: 1 }}>
+                <strong>Finale</strong>: {story.finale}
+              </List.Item>
+              <List.Item style={{ flex: 1 }}>
+                <strong>End</strong>: {story.end}
+              </List.Item>
+            </List>
             <Divider my="md" orientation="vertical" />
             <Button
               style={{ minWidth: 30, padding: "0" }}

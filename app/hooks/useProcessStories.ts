@@ -2,15 +2,19 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useTextField } from "./useTextField";
 
-export type StoryPart = "statusQuo" | "want" | "so"| "but" | "therefore";
+export type StoryPart = "statusQuo" | "omen" | "choice" | "party"| "firstBlood" | "rebirth" | "secondBlood" | "finale" | "end";
 
 export interface Story {
   id: string;
   statusQuo: string;
-  want: string;
-  so: string
-  but: string;
-  therefore: string;
+  omen: string;
+  choice: string;
+  party: string
+  firstBlood: string;
+  rebirth: string;
+  secondBlood: string;
+  finale: string;
+  end: string;
 }
 
 type Data = ReturnType<typeof useTextField>;
@@ -25,7 +29,7 @@ export function useProcessStories(data: Data) {
     stories.forEach((data) => {
       teksData =
         teksData +
-        `${data.statusQuo} AND ${data.want} SO ${data.so} BUT ${data.but} THEREFORE ${data.therefore}\n`;
+        `Status Quo: ${data.statusQuo}\nOmen: ${data.omen}\nChoice: ${data.choice}\nParty: ${data.party}\nFirst Blood: ${data.firstBlood}\nRebirth: ${data.rebirth}\nSecond Blood: ${data.secondBlood}\nFinale: ${data.finale}\nEnd: ${data.end}`;
     });
 
     return teksData;
@@ -49,30 +53,38 @@ export function useProcessStories(data: Data) {
 
     // if current text field is "therefore", create new chain of stories
     // otherwise go to next part
-    if (state.currentPart === "therefore") {
+    if (state.currentPart === "end") {
       setStories((prev) => [
         ...prev,
         {
           ...state.currentStory,
-          therefore: state.inputValue,
+          end: state.inputValue,
           id: uuidv4(),
         } as Story,
       ]);
       setter.setCurrentStory({});
       setter.setCurrentPart("statusQuo");
     } else {
-      let nextPart: StoryPart;
+      let nextPart: StoryPart = "statusQuo";
+
       if (state.currentPart === "statusQuo") {
-        nextPart = "want";
-      } else if (state.currentPart === "want") {
-        nextPart = "so"; // Corrected logic
-      } else if (state.currentPart === "so") {
-        nextPart = "but"; // Corrected logic
-      } else if (state.currentPart === "but") {
-        nextPart = "therefore";
-      } else {
-        nextPart = "therefore";
+        nextPart = "omen";
+      } else if (state.currentPart === "omen") {
+        nextPart = "choice";
+      } else if (state.currentPart === "choice") {
+        nextPart = "party";
+      } else if (state.currentPart === "party") {
+        nextPart = "firstBlood"; // Corrected logic
+      } else if (state.currentPart === "firstBlood") {
+        nextPart = "rebirth";
+      } else if (state.currentPart === "rebirth") {
+        nextPart = "secondBlood";
+      } else if (state.currentPart === "secondBlood") {
+        nextPart = "finale";
+      } else if (state.currentPart === "finale") {
+        nextPart = "end";
       }
+
       setter.setCurrentPart(nextPart);
     }
   };

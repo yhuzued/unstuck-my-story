@@ -25,9 +25,9 @@ export default function PlotingMode() {
   return (
     <>
       <Paper withBorder p="md" pb="lg" shadow="sm">
-        <Title>ABT Story Structure</Title>
+        <Title>The Game at Carousel Plot Cycle</Title>
         <Text>
-          Create a chain of stories using the And, But, Therefore framework{" "}
+          Create a chain of beats using Storylines featured on The Game at Carousel.
         </Text>
         <Form method="post" onSubmit={handleSubmit}>
           <Flex direction="column" gap="sm">
